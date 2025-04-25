@@ -1,1 +1,68 @@
+CREATE TABLE brand (
+  id INT PRIMARY KEY,
+  brandName VARCHAR(100)
+);
+CREATE TABLE productCategory (
+  id INT PRIMARY KEY,
+  categoryName VARCHAR(50)
+);
+CREATE TABLE colour (
+  id INT PRIMARY KEY,
+  colourName VARCHAR(50)
+);
+CREATE TABLE sizeCategory (
+  id INT PRIMARY KEY,
+  categoryName VARCHAR(50)
+);
+CREATE TABLE attributeCategory (
+  id INT PRIMARY KEY,
+  categoryName VARCHAR(50)
+);
+CREATE TABLE attributeType (
+  id INT PRIMARY KEY,
+  typeName VARCHAR(50)
+);
+CREATE TABLE product (
+  id INT PRIMARY KEY,
+  name VARCHAR(100),
+  brand_id INT,
+  category_id INT,
+  FOREIGN KEY (brand_id) REFERENCES brand(id),
+  FOREIGN KEY (category_id) REFERENCES productCategory(id)
+);
+CREATE TABLE productVariation (
+  id INT PRIMARY KEY,
+  product_id INT,
+  sizeCategory_id INT,
+  colour_id INT,
+  FOREIGN KEY (product_id) REFERENCES product(id),
+  FOREIGN KEY (sizeCategory_id) REFERENCES sizeCategory(id),
+  FOREIGN KEY (colour_id) REFERENCES colour(id)
+);
+CREATE TABLE productItem (
+  id INT PRIMARY KEY,
+  product_id INT,
+  variation_id INT,
+  quantity INT,
+  price DECIMAL(10.2),
+  FOREIGN KEY (product_id) REFERENCES product(id),
+  FOREIGN KEY (variation_id) REFERENCES productVariation(id)
+);
+CREATE TABLE productImage (
+  id INT PRIMARY KEY, 
+  productID INT, 
+  image_url VARCHAR(200),
+  fileReference VARCHAR(200),
+  FOREIGN KEY (productID) REFERENCES product(id)
+);
+CREATE TABLE productAttribute (
+  id INT PRIMARY KEY,
+  product_id INT,
+  attributeCategory_id INT,
+  attributeType_id INT,
+  value VARCHAR(250),
+  FOREIGN KEY (product_id) REFERENCES product(id),
+  FOREIGN KEY (attributeCategory_id) REFERENCES attributeCategory(id),
+  FOREIGN KEY (attributeType_id) REFERENCES attributeType(id)
+);
 
