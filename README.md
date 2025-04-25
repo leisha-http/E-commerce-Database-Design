@@ -26,4 +26,4 @@ To use this database, follow these steps:
 3. Run the SQL script in the ecommerce.sql file to create the database schema.
 4. Populate the database with sample data.
 ## Contributors
-![github profile](https://github.com/leisha-http)">
+![my github profile](https://github.com/leisha-http)">
